@@ -17,8 +17,6 @@ void face_detection() {
     Mat src;
     Mat dst;
     Mat gray;
-    vector<Rect> faces;
-    CascadeClassifier classifier;
 
     classifier.load("C:\\OpenCV-4.6.0\\opencv\\sources\\data\\haarcascades\\haarcascade_frontalface_default.xml");
 
@@ -37,19 +35,11 @@ void face_detection() {
         for (auto&& face : faces) {
             rectangle(dst, face, Scalar(0, 255, 0), 2);
         }
-
-        imshow("Output", dst);
-        waitKey(1);
     }
 }
 
 int main(int argc, const char** argv) {
 
-
-    // schedule new one
-    //int delay = 1000/FPS -
-    
-    /*
     CascadeClassifier face_cascade;
     CommandLineParser parser(argc, argv,
         "{help h||}"
@@ -59,13 +49,7 @@ int main(int argc, const char** argv) {
     parser.about("\nThis program demonstrates using the cv::CascadeClassifier class to detect objects (Face + eyes) in a video stream.\n"
         "You can use Haar or LBP features.\n\n");
     parser.printMessage();
-    String face_cascade_name = samples::findFile(parser.get<String>("face_cascade"));
-    String eyes_cascade_name = samples::findFile(parser.get<String>("eyes_cascade"));
 
-    VideoCapture cam(0);
-    if (!cam.isOpened()) return -1;
-
-    face_cascade.load(face_cascade_name);
     FacemarkKazemi::Params params;
     params.configfile = configfile_name;
     Ptr<Facemark> facemark = FacemarkKazemi::create(params);
